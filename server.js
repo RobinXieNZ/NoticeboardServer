@@ -1,32 +1,14 @@
 var http = require('http');
-var database = require('./database');
+var url = require('url');
+var handleRepos = {};
 
-// test data
-var post = {title:'mytitle',body:'mybody'};
+handleRepos['/add'] = require('./actions/add');
+handleRepos['/del'] = require('./actions/del');
+handleRepos['/update'] = require('./actions/update');
+handleRepos['/list'] = require('./actions/list');
 
 http.createServer(function (request, response){
-	switch(request.url){
-		case '/':
-			response.writeHead(200,{'Content-Type':'text/plain'});
-			response.end(database.list.toString());
-			break;
-		case '/add':
-			if (request.method === 'GET') {
-
-			}else{
-
-			}
-			database.add(post);
-			break;
-		case '/del':
-
-			break;
-		case '/update':
-			if (request.method === 'GET') {
-
-			}else{
-				
-			}
-			break;
-	}
+	let pathname = url.parse(request.url).pathname;
+	let handle = handleRepos[pathname];
+	handle(request, response);
 }).listen(3000);
