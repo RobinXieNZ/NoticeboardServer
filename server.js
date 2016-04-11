@@ -1,14 +1,20 @@
+'use strict';
 var http = require('http');
 var url = require('url');
-var handleRepos = {};
+var actionRepos = {};
 
-handleRepos['/add'] = require('./actions/add');
-handleRepos['/del'] = require('./actions/del');
-handleRepos['/update'] = require('./actions/update');
-handleRepos['/list'] = require('./actions/list');
+// actionRepos['/add'] = require('./actions/add');
+// actionRepos['/del'] = require('./actions/del');
+// actionRepos['/update'] = require('./actions/update');
+actionRepos['/'] = require('./actions/index');
 
 http.createServer(function (request, response){
 	let pathname = url.parse(request.url).pathname;
-	let handle = handleRepos[pathname];
-	handle(request, response);
+    var action = actionRepos[pathname];
+    if(action){
+        action(request, response);
+    }else{
+        response.writeHead(404);
+        response.end();
+    }
 }).listen(3000);
