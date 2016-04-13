@@ -5,7 +5,7 @@ var url = require('url');
 var actionRepos = {};
 
 actionRepos['/add'] = require('./actions/add');
-// actionRepos['/del'] = require('./actions/del');
+actionRepos['/del'] = require('./actions/del');
 // actionRepos['/update'] = require('./actions/update');
 actionRepos['/'] = require('./actions/index');
 
