@@ -1,14 +1,11 @@
-var query = require('../util/query');
-var post = require('../util/post');
+'use strict'
 var database = require('../database');
+var getId = require('../util/getId');
+var indexAction = require('./index');
 
 module.exports = function del(req,res) {
-    if(req.method === 'GET'){
-        var data = query(req);
-        database.del(data.id);
-    }else {
-        post(req).then(function (data) {
-            database.del(data.id);
-        });
-    }
+    getId(req, id=>{
+        database.del(id);
+        indexAction(req,res);
+    });
 };

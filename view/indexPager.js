@@ -12,6 +12,7 @@ class indexPager extends abstractPager{
         <li class="list-group-item">
             <h3>${post.title}</h3>
             <p>${post.body}</p>
+            <div><a href="/del?id=${index}">DEL</a></div>
         </li>` ).join('');
 
         return `
