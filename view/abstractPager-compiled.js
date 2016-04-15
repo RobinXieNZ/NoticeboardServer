@@ -1,9 +1,6 @@
 'use strict';
 
 class abstractPager {
-    constructor(isLogined) {
-        this.isLogined = isLogined;
-    }
 
     _render() {
         throw new Error('must implements this method');

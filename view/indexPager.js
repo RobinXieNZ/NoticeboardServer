@@ -13,6 +13,7 @@ class indexPager extends abstractPager{
             <h3>${post.title}</h3>
             <p>${post.body}</p>
             <div><a href="/del?id=${index}">DEL</a></div>
+            <div><a href="/update?id=${index}">Update</a></div>
         </li>` ).join('');
 
         return `
